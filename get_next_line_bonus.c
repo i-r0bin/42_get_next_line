@@ -56,7 +56,6 @@ char	*read_file(int fd, char *start)
 	if (!start)
 		start = ft_calloc(1, 1);
 	buffer = ft_calloc((BUFFER_SIZE + 1), sizeof(char));
-	bytes = 1;
 	while ((bytes = read(fd, buffer, BUFFER_SIZE)) != 0)
 	{
 		if (bytes == -1)
