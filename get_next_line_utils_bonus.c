@@ -65,6 +65,8 @@ char	*ft_join(char *s1, char *s2, int len)
 	char	*jo;
 	int		s1len;
 
+	if (!s1)
+		s1 = ft_calloc(1, 1);
 	if (!s1 || !s2)
 		return (NULL);
 	s1len = ft_strlen(s1);

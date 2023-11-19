@@ -17,7 +17,7 @@ char	*ft_next(char *prev, int len)
 	char	*n_line;
 	int		i;
 
-	if (!prev[len - 1])
+	if (!prev[len])
 	{
 		free(prev);
 		return (NULL);
@@ -53,18 +53,19 @@ char	*read_file(int fd, char *start)
 	char	*buffer;
 	int		bytes;
 
-	if (!start)
-		start = ft_calloc(1, 1);
 	buffer = ft_calloc((BUFFER_SIZE + 1), sizeof(char));
-	while ((bytes = read(fd, buffer, BUFFER_SIZE)) != 0)
+	while (1)
 	{
+		bytes = read(fd, buffer, BUFFER_SIZE);
+		if (bytes == 0)
+			break ;
 		if (bytes == -1)
 		{
 			free(buffer);
 			return (NULL);
 		}
 		start = ft_join(start, buffer, bytes);
-		if (buffer[bytes - 1] == '\n')
+		if (buffer[bytes] == '\n')
 			break;
 	}
 	free(buffer);
